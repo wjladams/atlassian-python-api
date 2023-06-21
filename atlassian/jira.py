@@ -1154,11 +1154,11 @@ class Jira(AtlassianRestAPI):
         issue = self.get("{base_url}/{key}".format(base_url=base_url, key=key))
         return issue["fields"]
 
-    def update_issue_field(self, key, fields="*all"):
+    def update_issue_field(self, key, fields="*all", params=None):
         base_url = self.resource_url("issue")
         return self.put(
             "{base_url}/{key}".format(base_url=base_url, key=key),
-            data={"fields": fields},
+            data={"fields": fields}, params=params
         )
 
     def bulk_update_issue_field(self, key_list, fields="*all"):
